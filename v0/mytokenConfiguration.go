@@ -18,6 +18,7 @@ type MytokenConfiguration struct {
 	MytokenEndpointOIDCFlowsSupported      []string                  `json:"mytoken_endpoint_oidc_flows_supported"`
 	ResponseTypesSupported                 []string                  `json:"response_types_supported"`
 	ServiceDocumentation                   string                    `json:"service_documentation,omitempty"`
+	SupportedRestrictionKeys               []string                  `json:"supported_restriction_keys"`
 	Version                                string                    `json:"version,omitempty"`
 }
 
