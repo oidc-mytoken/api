@@ -30,6 +30,8 @@ var TokenVer = TokenVersion{
 	Minor: 2,
 }
 
+const TokenType = "mytoken"
+
 // UsedMytoken is a type for a Mytoken that has been used, it additionally has information how often it has been used
 type UsedMytoken struct {
 	Mytoken      `json:",inline"`
