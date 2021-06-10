@@ -1,47 +1,47 @@
 package api
 
-// APIError is an error object that is returned on the api when an error occurs
-type APIError struct {
+// Error is an error object that is returned on the api when an error occurs
+type Error struct {
 	Error            string `json:"error"`
 	ErrorDescription string `json:"error_description,omitempty"`
 }
 
 // Predefined errors
 var (
-	APIErrorUnknownIssuer            = APIError{ErrorInvalidRequest, "The provided issuer is not supported"}
-	APIErrorStateMismatch            = APIError{ErrorInvalidRequest, "State mismatched"}
-	APIErrorUnsupportedOIDCFlow      = APIError{ErrorInvalidGrant, "Unsupported oidc_flow"}
-	APIErrorUnsupportedGrantType     = APIError{ErrorInvalidGrant, "Unsupported grant_type"}
-	APIErrorBadTransferCode          = APIError{ErrorInvalidToken, "Bad polling or transfer code"}
-	APIErrorTransferCodeExpired      = APIError{ErrorExpiredToken, "polling or transfer code is expired"}
-	APIErrorAuthorizationPending     = APIError{ErrorAuthorizationPending, ""}
-	APIErrorConsentDeclined          = APIError{ErrorAccessDenied, "user declined consent"}
-	APIErrorNoRefreshToken           = APIError{ErrorOIDC, "Did not receive a refresh token"}
-	APIErrorInsufficientCapabilities = APIError{ErrorInsufficientCapabilities, "The provided token does not have the required capability for this operation"}
-	APIErrorUsageRestricted          = APIError{ErrorUsageRestricted, "The restrictions of this token does not allow this usage"}
-	APIErrorNYI                      = APIError{ErrorNYI, ""}
+	ErrorUnknownIssuer            = Error{ErrorStrInvalidRequest, "The provided issuer is not supported"}
+	ErrorStateMismatch            = Error{ErrorStrInvalidRequest, "State mismatched"}
+	ErrorUnsupportedOIDCFlow      = Error{ErrorStrInvalidGrant, "Unsupported oidc_flow"}
+	ErrorUnsupportedGrantType     = Error{ErrorStrInvalidGrant, "Unsupported grant_type"}
+	ErrorBadTransferCode          = Error{ErrorStrInvalidToken, "Bad polling or transfer code"}
+	ErrorTransferCodeExpired      = Error{ErrorStrExpiredToken, "polling or transfer code is expired"}
+	ErrorAuthorizationPending     = Error{ErrorStrAuthorizationPending, ""}
+	ErrorConsentDeclined          = Error{ErrorStrAccessDenied, "user declined consent"}
+	ErrorNoRefreshToken           = Error{ErrorStrOIDC, "Did not receive a refresh token"}
+	ErrorInsufficientCapabilities = Error{ErrorStrInsufficientCapabilities, "The provided token does not have the required capability for this operation"}
+	ErrorUsageRestricted          = Error{ErrorStrUsageRestricted, "The restrictions of this token does not allow this usage"}
+	ErrorNYI                      = Error{ErrorStrNYI, ""}
 )
 
 // Predefined OAuth2/OIDC errors
 const (
-	ErrorInvalidRequest       = "invalid_request"
-	ErrorInvalidClient        = "invalid_client"
-	ErrorInvalidGrant         = "invalid_grant"
-	ErrorUnauthorizedClient   = "unauthorized_client"
-	ErrorUnsupportedGrantType = "unsupported_grant_type"
-	ErrorInvalidScope         = "invalid_scope"
-	ErrorInvalidToken         = "invalid_token"
-	ErrorInsufficientScope    = "insufficient_scope"
-	ErrorExpiredToken         = "expired_token"
-	ErrorAccessDenied         = "access_denied"
-	ErrorAuthorizationPending = "authorization_pending"
+	ErrorStrInvalidRequest       = "invalid_request"
+	ErrorStrInvalidClient        = "invalid_client"
+	ErrorStrInvalidGrant         = "invalid_grant"
+	ErrorStrUnauthorizedClient   = "unauthorized_client"
+	ErrorStrUnsupportedGrantType = "unsupported_grant_type"
+	ErrorStrInvalidScope         = "invalid_scope"
+	ErrorStrInvalidToken         = "invalid_token"
+	ErrorStrInsufficientScope    = "insufficient_scope"
+	ErrorStrExpiredToken         = "expired_token"
+	ErrorStrAccessDenied         = "access_denied"
+	ErrorStrAuthorizationPending = "authorization_pending"
 )
 
 // Additional Mytoken errors
 const (
-	ErrorInternal                 = "internal_server_error"
-	ErrorOIDC                     = "oidc_error"
-	ErrorNYI                      = "not_yet_implemented"
-	ErrorInsufficientCapabilities = "insufficient_capabilities"
-	ErrorUsageRestricted          = "usage_restricted"
+	ErrorStrInternal                 = "internal_server_error"
+	ErrorStrOIDC                     = "oidc_error"
+	ErrorStrNYI                      = "not_yet_implemented"
+	ErrorStrInsufficientCapabilities = "insufficient_capabilities"
+	ErrorStrUsageRestricted          = "usage_restricted"
 )

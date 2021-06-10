@@ -1,5 +1,6 @@
 package api
 
+// AllGrantTypes holds all the GrantTypes
 var AllGrantTypes = [...]string{GrantTypeMytoken, GrantTypeOIDCFlow, GrantTypePollingCode, GrantTypeAccessToken, GrantTypePrivateKeyJWT, GrantTypeTransferCode}
 
 // GrantTypes
