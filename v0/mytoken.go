@@ -8,6 +8,7 @@ import (
 // Mytoken is a mytoken Mytoken
 type Mytoken struct {
 	Version              TokenVersion `json:"ver"`
+	TokenType            string       `json:"token_type"`
 	Issuer               string       `json:"iss"`
 	Subject              string       `json:"sub"`
 	ExpiresAt            int64        `json:"exp,omitempty"`
@@ -26,7 +27,7 @@ type Mytoken struct {
 
 var TokenVer = TokenVersion{
 	Major: 0,
-	Minor: 1,
+	Minor: 2,
 }
 
 // UsedMytoken is a type for a Mytoken that has been used, it additionally has information how often it has been used
