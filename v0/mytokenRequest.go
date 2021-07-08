@@ -11,4 +11,5 @@ type MytokenFromMytokenRequest struct {
 	Name                         string       `json:"name"`
 	ResponseType                 string       `json:"response_type"`
 	FailOnRestrictionsNotTighter bool         `json:"error_on_restrictions"`
+	Rotation                     Rotation     `json:"rotation"`
 }
