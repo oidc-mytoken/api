@@ -9,5 +9,6 @@ type MytokenResponse struct {
 	Restrictions         Restrictions     `json:"restrictions,omitempty"`
 	Capabilities         Capabilities     `json:"capabilities,omitempty"`
 	SubtokenCapabilities Capabilities     `json:"subtoken_capabilities,omitempty"`
+	Rotation             *Rotation        `json:"rotation,omitempty"`
 	TokenUpdate          *MytokenResponse `json:"token_update,omitempty"`
 }
