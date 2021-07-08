@@ -22,7 +22,7 @@ type Mytoken struct {
 	Restrictions         Restrictions `json:"restrictions,omitempty"`
 	Capabilities         Capabilities `json:"capabilities"`
 	SubtokenCapabilities Capabilities `json:"subtoken_capabilities,omitempty"`
-	Rotation             Rotation     `json:"rotation,omitempty"`
+	Rotation             *Rotation    `json:"rotation,omitempty"`
 }
 
 // TokenVer is the current Mytoken TokenVersion

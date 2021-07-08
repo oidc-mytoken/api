@@ -16,5 +16,5 @@ type OIDCFlowRequest struct {
 	SubtokenCapabilities Capabilities `json:"subtoken_capabilities"`
 	Name                 string       `json:"name"`
 	ResponseType         string       `json:"response_type"`
-	Rotation             Rotation     `json:"rotation"`
+	Rotation             *Rotation    `json:"rotation"`
 }
