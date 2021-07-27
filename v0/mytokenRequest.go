@@ -17,6 +17,6 @@ type GeneralMytokenRequest struct {
 	SubtokenCapabilities Capabilities `json:"subtoken_capabilities"`
 	Name                 string       `json:"name"`
 	ResponseType         string       `json:"response_type"`
-	MaxTokenLen          int64        `json:"max_token_len"`
+	MaxTokenLen          int          `json:"max_token_len"`
 	Rotation             *Rotation    `json:"rotation"`
 }
