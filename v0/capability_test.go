@@ -7,7 +7,7 @@ func fail(t *testing.T, expected, got Capabilities) {
 }
 
 func testTighten(t *testing.T, a, b, expected Capabilities) {
-	intersect := Tighten(a, b)
+	intersect := TightenCapabilities(a, b)
 	if len(intersect) != len(expected) {
 		fail(t, expected, intersect)
 	}

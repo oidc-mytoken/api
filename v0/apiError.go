@@ -1,9 +1,21 @@
 package api
 
+import (
+	"fmt"
+)
+
 // Error is an error object that is returned on the api when an error occurs
 type Error struct {
 	Error            string `json:"error"`
 	ErrorDescription string `json:"error_description,omitempty"`
+}
+
+// CombinedMessage returns an error string that combines the error with the error description
+func (e Error) CombinedMessage() string {
+	if e.ErrorDescription == "" {
+		return e.Error
+	}
+	return fmt.Sprintf("%s: %s", e.Error, e.ErrorDescription)
 }
 
 // Predefined errors

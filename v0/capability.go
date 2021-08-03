@@ -124,8 +124,8 @@ func (c Capabilities) Value() (driver.Value, error) {
 	return json.Marshal(c)
 }
 
-// Tighten tightens two set of Capabilities into one new
-func Tighten(a, b Capabilities) (res Capabilities) {
+// TightenCapabilities tightens two set of Capabilities into one new
+func TightenCapabilities(a, b Capabilities) (res Capabilities) {
 	if b == nil {
 		return a
 	}
