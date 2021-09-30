@@ -1,7 +1,7 @@
 package api
 
 // AllGrantTypes holds all the GrantTypes
-var AllGrantTypes = [...]string{GrantTypeMytoken, GrantTypeOIDCFlow, GrantTypePollingCode, GrantTypeTransferCode}
+var AllGrantTypes = [...]string{GrantTypeMytoken, GrantTypeOIDCFlow, GrantTypePollingCode, GrantTypeTransferCode, GrantTypeSSH}
 
 // GrantTypes
 const (
@@ -9,4 +9,5 @@ const (
 	GrantTypeOIDCFlow     = "oidc_flow"
 	GrantTypePollingCode  = "polling_code"
 	GrantTypeTransferCode = "transfer_code"
+	GrantTypeSSH          = "ssh"
 )
