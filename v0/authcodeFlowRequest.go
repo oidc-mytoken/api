@@ -11,3 +11,9 @@ type OIDCFlowRequest struct {
 	GeneralMytokenRequest
 	OIDCFlow string `json:"oidc_flow"`
 }
+
+// Redirect types
+const (
+	RedirectTypeWeb    = "web"
+	RedirectTypeNative = "native"
+)
