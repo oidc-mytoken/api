@@ -33,7 +33,7 @@ func TestTightenOneEmpty(t *testing.T) {
 }
 func TestTightenNoIntersection(t *testing.T) {
 	a := NewCapabilities([]string{"some", "values"})
-	b := NewCapabilities([]string{"completly", "different"})
+	b := NewCapabilities([]string{"completely", "different"})
 	expected := Capabilities{}
 	testTighten(t, a, b, expected)
 	testTighten(t, b, a, expected)

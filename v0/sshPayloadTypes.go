@@ -2,6 +2,6 @@ package api
 
 // ssh payload mimetypes
 const (
-	MIMETYPE_JSON        = "application/json"
-	MIMETYPE_JSON_BASE64 = "application/json;base64"
+	SSHMimetypeJson       = "application/json"
+	SSHMimetypeJsonBase64 = "application/json;base64"
 )
