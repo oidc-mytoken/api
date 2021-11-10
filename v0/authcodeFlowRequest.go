@@ -4,6 +4,7 @@ package api
 type AuthCodeFlowRequest struct {
 	OIDCFlowRequest
 	RedirectType string `json:"redirect_type"`
+	RedirectURL  string `json:"redirect_url"`
 }
 
 // OIDCFlowRequest holds the request for an OIDC Flow request
