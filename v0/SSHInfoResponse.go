@@ -7,9 +7,9 @@ type SSHInfoResponse struct {
 }
 
 type SSHKeyInfo struct {
-	Name       string `json:"name,omitempty"`
-	SSHKey     string `json:"ssh_key,omitempty"`      // One of SSHKey and SSHKeyHash MUST be given
-	SSHKeyHash string `json:"ssh_key_hash,omitempty"` // One of SSHKey and SSHKeyHash MUST be given
-	Created    int64  `json:"created"`
-	LastUsed   *int64 `json:"last_used,omitempty"`
+	Name              string `json:"name,omitempty"`
+	SSHKey            string `json:"ssh_key,omitempty"`    // One of SSHKey and SSHKeyFingerprint MUST be given
+	SSHKeyFingerprint string `json:"ssh_key_fp,omitempty"` // One of SSHKey and SSHKeyFingerprint MUST be given
+	Created           int64  `json:"created"`
+	LastUsed          *int64 `json:"last_used,omitempty"`
 }
