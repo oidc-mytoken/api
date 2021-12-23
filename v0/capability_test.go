@@ -123,6 +123,30 @@ func TestCapabilities_Has(t *testing.T) {
 			c:        CapabilityGrants,
 			expected: true,
 		},
+		{
+			name: "Read / Write 1",
+			cap: Capabilities{
+				CapabilityGrants,
+			},
+			c:        CapabilityGrantsRead,
+			expected: true,
+		},
+		{
+			name: "Read / Write 2",
+			cap: Capabilities{
+				CapabilityGrantsRead,
+			},
+			c:        CapabilityGrants,
+			expected: false,
+		},
+		{
+			name: "Scoped Read / Write",
+			cap: Capabilities{
+				CapabilitySettings,
+			},
+			c:        CapabilityGrantsRead,
+			expected: true,
+		},
 	}
 	for _, test := range tests {
 		t.Run(

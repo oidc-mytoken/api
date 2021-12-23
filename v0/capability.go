@@ -21,23 +21,23 @@ var (
 		Description: "Allows access to user settings.",
 	}
 	CapabilitySettingsRead = Capability{
-		Name:        "read@settings",
+		Name:        readPrefix + CapabilitySettings.Name,
 		Description: "Allows read access to user settings.",
 	}
 	CapabilityGrants = Capability{
-		Name:        "settings:grants",
+		Name:        CapabilitySettings.Name + ":grants",
 		Description: "Allows access to user grants.",
 	}
 	CapabilityGrantsRead = Capability{
-		Name:        "read@settings:grants",
+		Name:        readPrefix + CapabilityGrants.Name,
 		Description: "Allows read access to user grants.",
 	}
 	CapabilitySSHGrant = Capability{
-		Name:        "settings:grants:ssh",
+		Name:        CapabilityGrants.Name + ":ssh",
 		Description: "Allows access to the ssh grant.",
 	}
 	CapabilitySSHGrantRead = Capability{
-		Name:        "read@settings:grants:ssh",
+		Name:        readPrefix + CapabilitySSHGrant.Name,
 		Description: "Allows read access to the ssh grant.",
 	}
 	CapabilityTokeninfo = Capability{
@@ -45,15 +45,15 @@ var (
 		Description: "Allows to obtain all information about this token.",
 	}
 	CapabilityTokeninfoIntrospect = Capability{
-		Name:        "tokeninfo:introspect",
+		Name:        CapabilityTokeninfo.Name + ":introspect",
 		Description: "Allows to obtain basic information about this token.",
 	}
 	CapabilityTokeninfoHistory = Capability{
-		Name:        "tokeninfo:history",
+		Name:        CapabilityTokeninfo.Name + ":history",
 		Description: "Allows to obtain the event history for this token.",
 	}
 	CapabilityTokeninfoSubtokens = Capability{
-		Name:        "tokeninfo:subtokens",
+		Name:        CapabilityTokeninfo.Name + ":subtokens",
 		Description: "Allows to list a subtoken-tree for this token.",
 	}
 	CapabilityListMT = Capability{
@@ -173,7 +173,7 @@ func (c Capability) parse() (parts []string, readOnly bool) {
 	s := c.Name
 	if strings.HasPrefix(s, readPrefix) {
 		readOnly = true
-		s = s[len(readPrefix)-1:]
+		s = s[len(readPrefix):]
 	}
 	parts = strings.Split(s, ":")
 	return
