@@ -6,21 +6,6 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-func fail(t *testing.T, expected, got Capabilities) {
-	t.Errorf("Expected '%v', got '%v'", expected, got)
-}
-
-func testTighten(t *testing.T, a, b, expected Capabilities) {
-	intersect := TightenCapabilities(a, b)
-	assert.Len(t, intersect, len(expected))
-	assert.Equal(t, expected, intersect)
-	// for i, ee := range expected {
-	// 	if ee != intersect[i] {
-	// 		fail(t, expected, intersect)
-	// 	}
-	// }
-}
-
 func TestTighten(t *testing.T) {
 	tests := []struct {
 		name     string
@@ -68,7 +53,9 @@ func TestTighten(t *testing.T) {
 	for _, test := range tests {
 		t.Run(
 			test.name, func(t *testing.T) {
-				testTighten(t, test.a, test.b, test.expected)
+				intersect := TightenCapabilities(test.a, test.b)
+				assert.Len(t, intersect, len(test.expected))
+				assert.Equal(t, test.expected, intersect)
 			},
 		)
 	}
