@@ -7,4 +7,5 @@ type SSHKeyAddRequest struct {
 	Restrictions         Restrictions `json:"restrictions" form:"restrictions" xml:"restrictions"`
 	Capabilities         Capabilities `json:"capabilities" form:"capabilities" xml:"capabilities"`
 	SubtokenCapabilities Capabilities `json:"subtoken_capabilities" form:"subtoken_capabilities" xml:"subtoken_capabilities"`
+	GrantType            string       `json:"grant_type" form:"grant_type" xml:"grant_type"`
 }
