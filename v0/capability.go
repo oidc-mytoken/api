@@ -21,7 +21,7 @@ var (
 		Description: "Allows access to user settings.",
 	}
 	CapabilitySettingsRead = Capability{
-		Name:        readPrefix + CapabilitySettings.Name,
+		Name:        CapabilityReadOnlyPrefix + CapabilitySettings.Name,
 		Description: "Allows read access to user settings.",
 	}
 	CapabilityGrants = Capability{
@@ -29,7 +29,7 @@ var (
 		Description: "Allows access to user grants.",
 	}
 	CapabilityGrantsRead = Capability{
-		Name:        readPrefix + CapabilityGrants.Name,
+		Name:        CapabilityReadOnlyPrefix + CapabilityGrants.Name,
 		Description: "Allows read access to user grants.",
 	}
 	CapabilitySSHGrant = Capability{
@@ -37,7 +37,7 @@ var (
 		Description: "Allows access to the ssh grant.",
 	}
 	CapabilitySSHGrantRead = Capability{
-		Name:        readPrefix + CapabilitySSHGrant.Name,
+		Name:        CapabilityReadOnlyPrefix + CapabilitySSHGrant.Name,
 		Description: "Allows read access to the ssh grant.",
 	}
 	CapabilityTokeninfo = Capability{
@@ -167,13 +167,13 @@ func TightenCapabilities(a, b Capabilities) (res Capabilities) {
 	return
 }
 
-const readPrefix = "read@"
+const CapabilityReadOnlyPrefix = "read@"
 
 func (c Capability) parse() (parts []string, readOnly bool) {
 	s := c.Name
-	if strings.HasPrefix(s, readPrefix) {
+	if strings.HasPrefix(s, CapabilityReadOnlyPrefix) {
 		readOnly = true
-		s = s[len(readPrefix):]
+		s = s[len(CapabilityReadOnlyPrefix):]
 	}
 	parts = strings.Split(s, ":")
 	return
