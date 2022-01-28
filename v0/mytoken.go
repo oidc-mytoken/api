@@ -15,8 +15,10 @@ type Mytoken struct {
 	ExpiresAt            int64        `json:"exp,omitempty"`
 	NotBefore            int64        `json:"nbf"`
 	IssuedAt             int64        `json:"iat"`
+	AuthTime             int64        `json:"auth_time"`
 	ID                   string       `json:"jti"`
 	SeqNo                uint64       `json:"seq_no"`
+	Name                 string       `json:"name,omitempty"`
 	Audience             string       `json:"aud"`
 	OIDCSubject          string       `json:"oidc_sub"`
 	OIDCIssuer           string       `json:"oidc_iss"`
@@ -29,7 +31,7 @@ type Mytoken struct {
 // TokenVer is the current Mytoken TokenVersion
 var TokenVer = TokenVersion{
 	Major: 0,
-	Minor: 2,
+	Minor: 4,
 }
 
 // TokenType is constant that can be used for identifying mytokens and to distinguish them from OIDC tokens

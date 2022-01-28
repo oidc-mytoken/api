@@ -18,18 +18,42 @@ var (
 	}
 	CapabilitySettings = Capability{
 		Name:        "settings",
-		Description: "Allows to modify user settings.",
+		Description: "Allows access to user settings.",
+	}
+	CapabilitySettingsRead = Capability{
+		Name:        CapabilityReadOnlyPrefix + CapabilitySettings.Name,
+		Description: "Allows read access to user settings.",
+	}
+	CapabilityGrants = Capability{
+		Name:        CapabilitySettings.Name + ":grants",
+		Description: "Allows access to user grants.",
+	}
+	CapabilityGrantsRead = Capability{
+		Name:        CapabilityReadOnlyPrefix + CapabilityGrants.Name,
+		Description: "Allows read access to user grants.",
+	}
+	CapabilitySSHGrant = Capability{
+		Name:        CapabilityGrants.Name + ":ssh",
+		Description: "Allows access to the ssh grant.",
+	}
+	CapabilitySSHGrantRead = Capability{
+		Name:        CapabilityReadOnlyPrefix + CapabilitySSHGrant.Name,
+		Description: "Allows read access to the ssh grant.",
+	}
+	CapabilityTokeninfo = Capability{
+		Name:        "tokeninfo",
+		Description: "Allows to obtain all information about this token.",
 	}
 	CapabilityTokeninfoIntrospect = Capability{
-		Name:        "tokeninfo_introspect",
+		Name:        CapabilityTokeninfo.Name + ":introspect",
 		Description: "Allows to obtain basic information about this token.",
 	}
 	CapabilityTokeninfoHistory = Capability{
-		Name:        "tokeninfo_history",
+		Name:        CapabilityTokeninfo.Name + ":history",
 		Description: "Allows to obtain the event history for this token.",
 	}
-	CapabilityTokeninfoTree = Capability{
-		Name:        "tokeninfo_tree",
+	CapabilityTokeninfoSubtokens = Capability{
+		Name:        CapabilityTokeninfo.Name + ":subtokens",
 		Description: "Allows to list a subtoken-tree for this token.",
 	}
 	CapabilityListMT = Capability{
@@ -43,9 +67,15 @@ var AllCapabilities = Capabilities{
 	CapabilityAT,
 	CapabilityCreateMT,
 	CapabilitySettings,
+	CapabilitySettingsRead,
+	CapabilityGrants,
+	CapabilityGrantsRead,
+	CapabilitySSHGrant,
+	CapabilitySSHGrantRead,
+	CapabilityTokeninfo,
 	CapabilityTokeninfoIntrospect,
 	CapabilityTokeninfoHistory,
-	CapabilityTokeninfoTree,
+	CapabilityTokeninfoSubtokens,
 	CapabilityListMT,
 }
 
@@ -137,10 +167,37 @@ func TightenCapabilities(a, b Capabilities) (res Capabilities) {
 	return
 }
 
+const CapabilityReadOnlyPrefix = "read@"
+
+func (c Capability) parse() (parts []string, readOnly bool) {
+	s := c.Name
+	if strings.HasPrefix(s, CapabilityReadOnlyPrefix) {
+		readOnly = true
+		s = s[len(CapabilityReadOnlyPrefix):]
+	}
+	parts = strings.Split(s, ":")
+	return
+}
+
 // Has checks if Capabilities slice contains the passed Capability
 func (c Capabilities) Has(a Capability) bool {
+	aParts, aReadOnly := a.parse()
 	for _, cc := range c {
-		if cc == a {
+		cParts, cReadOnly := cc.parse()
+		if cReadOnly && !aReadOnly {
+			continue
+		}
+		if len(cParts) > len(aParts) {
+			continue
+		}
+		notValid := false
+		for i, cPart := range cParts {
+			if cPart != aParts[i] {
+				notValid = true
+				break
+			}
+		}
+		if !notValid {
 			return true
 		}
 	}

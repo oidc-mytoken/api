@@ -10,6 +10,7 @@ type MytokenConfiguration struct {
 	UserSettingsEndpoint                   string                    `json:"usersettings_endpoint"`
 	TokenTransferEndpoint                  string                    `json:"token_transfer_endpoint,omitempty"`
 	JWKSURI                                string                    `json:"jwks_uri"`
+	SSHKeys                                []SSHKeyMetadata          `json:"ssh_keys,omitempty"`
 	ProvidersSupported                     []SupportedProviderConfig `json:"providers_supported"`
 	TokenSigningAlgValue                   string                    `json:"token_signing_alg_value"`
 	TokenInfoEndpointActionsSupported      []string                  `json:"tokeninfo_endpoint_actions_supported,omitempty"`
@@ -26,4 +27,10 @@ type MytokenConfiguration struct {
 type SupportedProviderConfig struct {
 	Issuer          string   `json:"issuer"`
 	ScopesSupported []string `json:"scopes_supported"`
+}
+
+// SSHKeyInfo holds information about an ssh key
+type SSHKeyMetadata struct {
+	Type        string `json:"type"`
+	Fingerprint string `json:"fingerprint"`
 }
