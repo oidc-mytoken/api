@@ -65,6 +65,11 @@ var (
 // AllCapabilities holds all defined Capabilities
 var AllCapabilities = Capabilities{
 	CapabilityAT,
+	CapabilityTokeninfo,
+	CapabilityTokeninfoIntrospect,
+	CapabilityTokeninfoHistory,
+	CapabilityTokeninfoSubtokens,
+	CapabilityListMT,
 	CapabilityCreateMT,
 	CapabilitySettings,
 	CapabilitySettingsRead,
@@ -72,11 +77,6 @@ var AllCapabilities = Capabilities{
 	CapabilityGrantsRead,
 	CapabilitySSHGrant,
 	CapabilitySSHGrantRead,
-	CapabilityTokeninfo,
-	CapabilityTokeninfoIntrospect,
-	CapabilityTokeninfoHistory,
-	CapabilityTokeninfoSubtokens,
-	CapabilityListMT,
 }
 
 func descriptionFor(name string) string {
