@@ -12,8 +12,8 @@ type TokeninfoHistoryResponse struct {
 	TokenUpdate  *MytokenResponse `json:"token_update,omitempty"`
 }
 
-// TokeninfoTreeResponse is a type for the response for an tree request
-type TokeninfoTreeResponse struct {
+// TokeninfoSubtokensResponse is a type for the response for an tree request
+type TokeninfoSubtokensResponse struct {
 	Tokens      MytokenEntryTree `json:"mytokens"`
 	TokenUpdate *MytokenResponse `json:"token_update,omitempty"`
 }
