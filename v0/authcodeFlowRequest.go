@@ -3,8 +3,8 @@ package api
 // AuthCodeFlowRequest holds a authorization code flow request
 type AuthCodeFlowRequest struct {
 	OIDCFlowRequest
-	RedirectType string `json:"redirect_type"`
-	RedirectURL  string `json:"redirect_url"`
+	ClientType  string `json:"client_type"`
+	RedirectURI string `json:"redirect_uri"`
 }
 
 // OIDCFlowRequest holds the request for an OIDC Flow request
@@ -13,8 +13,8 @@ type OIDCFlowRequest struct {
 	OIDCFlow string `json:"oidc_flow"`
 }
 
-// Redirect types
+// Client types
 const (
-	RedirectTypeWeb    = "web"
-	RedirectTypeNative = "native"
+	ClientTypeWeb    = "web"
+	ClientTypeNative = "native"
 )
