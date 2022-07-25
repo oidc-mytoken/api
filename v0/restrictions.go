@@ -1,7 +1,7 @@
 package api
 
 // Restrictions is a slice of Restriction
-type Restrictions []Restriction
+type Restrictions []*Restriction
 
 // Restriction describes a token usage restriction
 type Restriction struct {
