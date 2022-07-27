@@ -19,4 +19,5 @@ type GeneralMytokenRequest struct {
 	ResponseType         string       `json:"response_type"`
 	MaxTokenLen          int          `json:"max_token_len"`
 	Rotation             *Rotation    `json:"rotation"`
+	ApplicationName      string       `json:"application_name"`
 }
