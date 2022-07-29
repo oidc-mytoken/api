@@ -2,8 +2,9 @@ package api
 
 // TokeninfoIntrospectResponse is a type for the response for an introspect request
 type TokeninfoIntrospectResponse struct {
-	Valid bool        `json:"valid"`
-	Token UsedMytoken `json:"token"`
+	Valid     bool        `json:"valid"`
+	TokenType string      `json:"token_type"`
+	Token     UsedMytoken `json:"token"`
 }
 
 // TokeninfoHistoryResponse is a type for the response for an history request
