@@ -18,7 +18,7 @@ var (
 	}
 	CapabilitySettings = Capability{
 		Name:        "settings",
-		Description: "Allows access to user settings.",
+		Description: "Allows read/write access to user settings.",
 	}
 	CapabilitySettingsRead = Capability{
 		Name:        CapabilityReadOnlyPrefix + CapabilitySettings.Name,
@@ -26,7 +26,7 @@ var (
 	}
 	CapabilityGrants = Capability{
 		Name:        CapabilitySettings.Name + ":grants",
-		Description: "Allows access to user grants.",
+		Description: "Allows read/write access to user grants.",
 	}
 	CapabilityGrantsRead = Capability{
 		Name:        CapabilityReadOnlyPrefix + CapabilityGrants.Name,
@@ -34,7 +34,7 @@ var (
 	}
 	CapabilitySSHGrant = Capability{
 		Name:        CapabilityGrants.Name + ":ssh",
-		Description: "Allows access to the ssh grant.",
+		Description: "Allows read/write access to the ssh grant.",
 	}
 	CapabilitySSHGrantRead = Capability{
 		Name:        CapabilityReadOnlyPrefix + CapabilitySSHGrant.Name,
