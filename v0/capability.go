@@ -60,6 +60,10 @@ var (
 		Name:        "list_mytokens",
 		Description: "Allows to list all mytokens.",
 	}
+	CapabilityRevokeAnyToken = Capability{
+		Name:        "revoke_any_token",
+		Description: "Allows to revoke any token.",
+	}
 )
 
 // AllCapabilities holds all defined Capabilities
@@ -70,6 +74,7 @@ var AllCapabilities = Capabilities{
 	CapabilityTokeninfoHistory,
 	CapabilityTokeninfoSubtokens,
 	CapabilityListMT,
+	CapabilityRevokeAnyToken,
 	CapabilityCreateMT,
 	CapabilitySettings,
 	CapabilitySettingsRead,
