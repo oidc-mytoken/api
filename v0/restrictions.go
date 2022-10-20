@@ -9,7 +9,7 @@ type Restriction struct {
 	ExpiresAt     int64    `json:"exp,omitempty"`
 	Scope         string   `json:"scope,omitempty"`
 	Audiences     []string `json:"audience,omitempty"`
-	IPs           []string `json:"ip,omitempty"`
+	Hosts         []string `json:"hosts,omitempty"`
 	GeoIPAllow    []string `json:"geoip_allow,omitempty"`
 	GeoIPDisallow []string `json:"geoip_disallow,omitempty"`
 	UsagesAT      *int64   `json:"usages_AT,omitempty"`
