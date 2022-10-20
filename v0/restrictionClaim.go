@@ -1,9 +1,17 @@
 package api
 
 // AllRestrictionClaims holds all the RestrictionClaims
-var AllRestrictionClaims = [...]string{RestrictionClaimNotBefore, RestrictionClaimExpiresAt, RestrictionClaimScope,
-	RestrictionClaimAudiences, RestrictionClaimIPs, RestrictionClaimGeoIPAllow, RestrictionClaimGeoIPDisallow,
-	RestrictionClaimUsagesAT, RestrictionClaimUsagesOther}
+var AllRestrictionClaims = [...]string{
+	RestrictionClaimNotBefore,
+	RestrictionClaimExpiresAt,
+	RestrictionClaimScope,
+	RestrictionClaimAudiences,
+	RestrictionClaimHosts,
+	RestrictionClaimGeoIPAllow,
+	RestrictionClaimGeoIPDisallow,
+	RestrictionClaimUsagesAT,
+	RestrictionClaimUsagesOther,
+}
 
 // RestrictionClaims
 const (
@@ -11,7 +19,7 @@ const (
 	RestrictionClaimExpiresAt     = "exp"
 	RestrictionClaimScope         = "scope"
 	RestrictionClaimAudiences     = "audience"
-	RestrictionClaimIPs           = "ip"
+	RestrictionClaimHosts         = "hosts"
 	RestrictionClaimGeoIPAllow    = "geoip_allow"
 	RestrictionClaimGeoIPDisallow = "geoip_disallow"
 	RestrictionClaimUsagesAT      = "usages_AT"
