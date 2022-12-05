@@ -8,6 +8,7 @@ type MytokenEntry struct {
 	MOMID          string `json:"mom_id"`
 	Name           string `json:"name,omitempty"`
 	CreatedAt      int64  `json:"created"`
+	ExpiresAt      int64  `json:"expires_at,omitempty"`
 	ClientMetaData `json:",inline"`
 }
 
