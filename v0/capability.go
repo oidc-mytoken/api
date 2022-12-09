@@ -6,6 +6,15 @@ import (
 	"strings"
 )
 
+// Capability is a capability string
+type Capability struct {
+	Name        string
+	Description string
+}
+
+// Capabilities is a slice of Capability
+type Capabilities []Capability
+
 // Defined Capabilities
 var (
 	CapabilityAT = Capability{
@@ -94,6 +103,12 @@ var AllCapabilities = Capabilities{
 	CapabilitySSHGrantRead,
 }
 
+// DefaultCapabilities holds the default Capabilities
+var DefaultCapabilities = Capabilities{
+	CapabilityAT,
+	CapabilityTokeninfo,
+}
+
 func subcapabilityName(capability Capability, Suffix string) string {
 	return capability.Name + ":" + Suffix
 }
@@ -129,15 +144,6 @@ func (c Capabilities) Strings() (s []string) {
 		s = append(s, cc.Name)
 	}
 	return
-}
-
-// Capabilities is a slice of Capability
-type Capabilities []Capability
-
-// Capability is a capability string
-type Capability struct {
-	Name        string
-	Description string
 }
 
 // MarshalJSON implements the json.Marshaler interface
