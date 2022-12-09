@@ -27,10 +27,11 @@ type MytokenConfiguration struct {
 // SupportedProviderConfig holds information about a provider
 type SupportedProviderConfig struct {
 	Issuer          string   `json:"issuer"`
+	Name            string   `json:"name,omitempty"`
 	ScopesSupported []string `json:"scopes_supported"`
 }
 
-// SSHKeyInfo holds information about an ssh key
+// SSHKeyMetadata holds information about an ssh key
 type SSHKeyMetadata struct {
 	Type        string `json:"type"`
 	Fingerprint string `json:"fingerprint"`
