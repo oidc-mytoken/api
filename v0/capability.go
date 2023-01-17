@@ -6,6 +6,15 @@ import (
 	"strings"
 )
 
+// Capability is a capability string
+type Capability struct {
+	Name        string
+	Description string
+}
+
+// Capabilities is a slice of Capability
+type Capabilities []Capability
+
 // Defined Capabilities
 var (
 	CapabilityAT = Capability{
@@ -45,24 +54,32 @@ var (
 		Description: "Allows to obtain all information about this token.",
 	}
 	CapabilityTokeninfoIntrospect = Capability{
-		Name:        CapabilityTokeninfo.Name + ":introspect",
+		Name:        subcapabilityName(CapabilityTokeninfo, "introspect"),
 		Description: "Allows to obtain basic information about this token.",
 	}
 	CapabilityTokeninfoHistory = Capability{
-		Name:        CapabilityTokeninfo.Name + ":history",
-		Description: "Allows to obtain the event history for this token.",
+		Name:        subcapabilityName(CapabilityTokeninfo, "history"),
+		Description: "Allows to obtain the event history for this token and all subtokens.",
 	}
 	CapabilityTokeninfoSubtokens = Capability{
-		Name:        CapabilityTokeninfo.Name + ":subtokens",
+		Name:        subcapabilityName(CapabilityTokeninfo, "subtokens"),
 		Description: "Allows to list a subtoken-tree for this token.",
 	}
+	CapabilityManageMTs = Capability{
+		Name:        "manage_mytokens",
+		Description: "Allows to manage (obtain metadata and revoke) all mytoken.",
+	}
 	CapabilityListMT = Capability{
-		Name:        "list_mytokens",
-		Description: "Allows to list all mytokens.",
+		Name:        subcapabilityName(CapabilityManageMTs, "list"),
+		Description: "Allows to list metadata about all mytokens.",
 	}
 	CapabilityRevokeAnyToken = Capability{
-		Name:        "revoke_any_token",
-		Description: "Allows to revoke any token.",
+		Name:        subcapabilityName(CapabilityManageMTs, "revoke"),
+		Description: "Allows to revoke any mytoken.",
+	}
+	CapabilityHistoryAnyToken = Capability{
+		Name:        subcapabilityName(CapabilityManageMTs, "history"),
+		Description: "Allows to obtain the event history for any token.",
 	}
 )
 
@@ -73,8 +90,10 @@ var AllCapabilities = Capabilities{
 	CapabilityTokeninfoIntrospect,
 	CapabilityTokeninfoHistory,
 	CapabilityTokeninfoSubtokens,
+	CapabilityManageMTs,
 	CapabilityListMT,
 	CapabilityRevokeAnyToken,
+	CapabilityHistoryAnyToken,
 	CapabilityCreateMT,
 	CapabilitySettings,
 	CapabilitySettingsRead,
@@ -82,6 +101,16 @@ var AllCapabilities = Capabilities{
 	CapabilityGrantsRead,
 	CapabilitySSHGrant,
 	CapabilitySSHGrantRead,
+}
+
+// DefaultCapabilities holds the default Capabilities
+var DefaultCapabilities = Capabilities{
+	CapabilityAT,
+	CapabilityTokeninfo,
+}
+
+func subcapabilityName(capability Capability, Suffix string) string {
+	return capability.Name + ":" + Suffix
 }
 
 func descriptionFor(name string) string {
@@ -115,15 +144,6 @@ func (c Capabilities) Strings() (s []string) {
 		s = append(s, cc.Name)
 	}
 	return
-}
-
-// Capabilities is a slice of Capability
-type Capabilities []Capability
-
-// Capability is a capability string
-type Capability struct {
-	Name        string
-	Description string
 }
 
 // MarshalJSON implements the json.Marshaler interface

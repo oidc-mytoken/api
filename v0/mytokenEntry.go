@@ -3,9 +3,12 @@ package api
 // MytokenEntry holds the information of a MytokenEntry as stored in the
 // database
 type MytokenEntry struct {
-	RevocationID   string `json:"revocation_id"`
+	// The "Manage-Other-Mytokens-ID (MOMID) is used in requests to manage other mytokens than the one used for
+	// authorization
+	MOMID          string `json:"mom_id"`
 	Name           string `json:"name,omitempty"`
 	CreatedAt      int64  `json:"created"`
+	ExpiresAt      int64  `json:"expires_at,omitempty"`
 	ClientMetaData `json:",inline"`
 }
 

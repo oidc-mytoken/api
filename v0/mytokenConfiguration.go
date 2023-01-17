@@ -9,6 +9,7 @@ type MytokenConfiguration struct {
 	RevocationEndpoint                     string                    `json:"revocation_endpoint,omitempty"`
 	UserSettingsEndpoint                   string                    `json:"usersettings_endpoint"`
 	TokenTransferEndpoint                  string                    `json:"token_transfer_endpoint,omitempty"`
+	ProfilesEndpoint                       string                    `json:"profiles_endpoint,omitempty"`
 	JWKSURI                                string                    `json:"jwks_uri"`
 	SSHKeys                                []SSHKeyMetadata          `json:"ssh_keys,omitempty"`
 	ProvidersSupported                     []SupportedProviderConfig `json:"providers_supported"`
@@ -26,10 +27,11 @@ type MytokenConfiguration struct {
 // SupportedProviderConfig holds information about a provider
 type SupportedProviderConfig struct {
 	Issuer          string   `json:"issuer"`
+	Name            string   `json:"name,omitempty"`
 	ScopesSupported []string `json:"scopes_supported"`
 }
 
-// SSHKeyInfo holds information about an ssh key
+// SSHKeyMetadata holds information about an ssh key
 type SSHKeyMetadata struct {
 	Type        string `json:"type"`
 	Fingerprint string `json:"fingerprint"`

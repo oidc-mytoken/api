@@ -8,10 +8,11 @@ import (
 
 // Rotation is a type describing how a mytoken might be rotated
 type Rotation struct {
-	OnAT       bool   `json:"on_AT,omitempty"`
-	OnOther    bool   `json:"on_other,omitempty"`
-	Lifetime   uint64 `json:"lifetime,omitempty"`
-	AutoRevoke bool   `json:"auto_revoke,omitempty"`
+	OnAT             bool             `json:"on_AT,omitempty"`
+	OnOther          bool             `json:"on_other,omitempty"`
+	Lifetime         uint64           `json:"lifetime,omitempty"`
+	AutoRevoke       bool             `json:"auto_revoke,omitempty"`
+	IncludedProfiles IncludedProfiles `json:"include,omitempty"`
 }
 
 // Scan implements the sql.Scanner interface.

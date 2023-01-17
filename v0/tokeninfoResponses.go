@@ -7,19 +7,19 @@ type TokeninfoIntrospectResponse struct {
 	Token     UsedMytoken `json:"token"`
 }
 
-// TokeninfoHistoryResponse is a type for the response for an history request
+// TokeninfoHistoryResponse is a type for the response for a history request
 type TokeninfoHistoryResponse struct {
-	EventHistory EventHistory     `json:"events"`
-	TokenUpdate  *MytokenResponse `json:"token_update,omitempty"`
+	EventHistory
+	TokenUpdate *MytokenResponse `json:"token_update,omitempty"`
 }
 
-// TokeninfoSubtokensResponse is a type for the response for an tree request
+// TokeninfoSubtokensResponse is a type for the response for a tree request
 type TokeninfoSubtokensResponse struct {
 	Tokens      MytokenEntryTree `json:"mytokens"`
 	TokenUpdate *MytokenResponse `json:"token_update,omitempty"`
 }
 
-// TokeninfoListResponse is a type for the response for an list request
+// TokeninfoListResponse is a type for the response for a list request
 type TokeninfoListResponse struct {
 	Tokens      []MytokenEntryTree `json:"mytokens"`
 	TokenUpdate *MytokenResponse   `json:"token_update,omitempty"`

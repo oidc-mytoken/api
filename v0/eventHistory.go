@@ -1,7 +1,10 @@
 package api
 
 // EventHistory is a slice of EventEntry
-type EventHistory []EventEntry
+type EventHistory struct {
+	Events []EventEntry `json:"events"`
+	MOMID  string       `json:"mom_id,omitempty"`
+}
 
 // EventEntry is a type holding information about an event
 type EventEntry struct {

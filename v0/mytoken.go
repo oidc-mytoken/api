@@ -30,6 +30,9 @@ var TokenVer = TokenVersion{
 // TokenType is a constant that can be used for identifying mytokens and to distinguish them from OIDC tokens
 const TokenType = "mytoken"
 
+// MinShortTokenLen is the minimum length of a short token
+const MinShortTokenLen = 32
+
 // UsedMytoken is a type for a Mytoken that has been used, it additionally has information how often it has been used
 type UsedMytoken struct {
 	Mytoken      `json:",inline"`
