@@ -5,6 +5,7 @@ type TokeninfoIntrospectResponse struct {
 	Valid     bool        `json:"valid"`
 	TokenType string      `json:"token_type"`
 	Token     UsedMytoken `json:"token"`
+	MOMID     string      `json:"mom_id"`
 }
 
 // TokeninfoHistoryResponse is a type for the response for a history request
