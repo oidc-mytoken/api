@@ -20,18 +20,63 @@ func (e Error) CombinedMessage() string {
 
 // Predefined errors
 var (
-	ErrorUnknownIssuer            = Error{ErrorStrInvalidRequest, "The provided issuer is not supported"}
-	ErrorStateMismatch            = Error{ErrorStrInvalidRequest, "State mismatched"}
-	ErrorUnsupportedOIDCFlow      = Error{ErrorStrInvalidGrant, "Unsupported oidc_flow"}
-	ErrorUnsupportedGrantType     = Error{ErrorStrInvalidGrant, "Unsupported grant_type"}
-	ErrorBadTransferCode          = Error{ErrorStrInvalidToken, "Bad polling or transfer code"}
-	ErrorTransferCodeExpired      = Error{ErrorStrExpiredToken, "polling or transfer code is expired"}
-	ErrorAuthorizationPending     = Error{ErrorStrAuthorizationPending, ""}
-	ErrorConsentDeclined          = Error{ErrorStrAccessDenied, "user declined consent"}
-	ErrorNoRefreshToken           = Error{ErrorStrOIDC, "Did not receive a refresh token"}
-	ErrorInsufficientCapabilities = Error{ErrorStrInsufficientCapabilities, "The provided token does not have the required capability for this operation"}
-	ErrorUsageRestricted          = Error{ErrorStrUsageRestricted, "The restrictions of this token does not allow this usage"}
-	ErrorNYI                      = Error{ErrorStrNYI, ""}
+	ErrorUnknownIssuer = Error{
+		ErrorStrInvalidRequest,
+		"The provided issuer is not supported",
+	}
+	ErrorStateMismatch = Error{
+		ErrorStrInvalidRequest,
+		"State mismatched",
+	}
+	ErrorUnsupportedOIDCFlow = Error{
+		ErrorStrInvalidGrant,
+		"Unsupported oidc_flow",
+	}
+	ErrorUnsupportedGrantType = Error{
+		ErrorStrInvalidGrant,
+		"Unsupported grant_type",
+	}
+	ErrorBadTransferCode = Error{
+		ErrorStrInvalidToken,
+		"Bad polling or transfer code",
+	}
+	ErrorTransferCodeExpired = Error{
+		ErrorStrExpiredToken,
+		"polling or transfer code is expired",
+	}
+	ErrorAuthorizationPending = Error{
+		ErrorStrAuthorizationPending,
+		"",
+	}
+	ErrorConsentDeclined = Error{
+		ErrorStrAccessDenied,
+		"user declined consent",
+	}
+	ErrorNoRefreshToken = Error{
+		ErrorStrOIDC,
+		"Did not receive a refresh token",
+	}
+	ErrorInsufficientCapabilities = Error{
+		ErrorStrInsufficientCapabilities,
+		"The provided token does not have the required capability for this operation",
+	}
+	ErrorUsageRestricted = Error{
+		ErrorStrUsageRestricted,
+		"The restrictions of this token does not allow this usage",
+	}
+	ErrorMailRequired = Error{
+		ErrorStrMailRequired,
+		"to fulfill the request we need a valid email address; we currently do not have a email address associated" +
+			" with the user",
+	}
+	ErrorMailNotVerified = Error{
+		ErrorStrMailRequired,
+		"email not verified",
+	}
+	ErrorNYI = Error{
+		ErrorStrNYI,
+		"",
+	}
 )
 
 // Predefined OAuth2/OIDC errors
@@ -47,6 +92,7 @@ const (
 	ErrorStrExpiredToken         = "expired_token"
 	ErrorStrAccessDenied         = "access_denied"
 	ErrorStrAuthorizationPending = "authorization_pending"
+	ErrorStrMailRequired         = "mail_required"
 )
 
 // Additional Mytoken errors
