@@ -8,6 +8,7 @@ type MytokenConfiguration struct {
 	TokeninfoEndpoint                      string                    `json:"tokeninfo_endpoint,omitempty"`
 	RevocationEndpoint                     string                    `json:"revocation_endpoint,omitempty"`
 	UserSettingsEndpoint                   string                    `json:"usersettings_endpoint"`
+	NotificationsEndpoint                  string                    `json:"notifications_endpoint,omitempty"`
 	TokenTransferEndpoint                  string                    `json:"token_transfer_endpoint,omitempty"`
 	ProfilesEndpoint                       string                    `json:"profiles_endpoint,omitempty"`
 	JWKSURI                                string                    `json:"jwks_uri"`

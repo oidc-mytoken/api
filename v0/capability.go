@@ -49,6 +49,14 @@ var (
 		Name:        CapabilityReadOnlyPrefix + CapabilitySSHGrant.Name,
 		Description: "Allows read access to the ssh grant.",
 	}
+	CapabilityEmail = Capability{
+		Name:        CapabilitySettings.Name + ":email",
+		Description: "Allows read/write access to email settings.",
+	}
+	CapabilityEmailRead = Capability{
+		Name:        CapabilityReadOnlyPrefix + CapabilityEmail.Name,
+		Description: "Allows read access to email settings.",
+	}
 	CapabilityTokeninfo = Capability{
 		Name:        "tokeninfo",
 		Description: "Allows to obtain all information about this token.",
@@ -64,6 +72,10 @@ var (
 	CapabilityTokeninfoSubtokens = Capability{
 		Name:        subcapabilityName(CapabilityTokeninfo, "subtokens"),
 		Description: "Allows to list a subtoken-tree for this token.",
+	}
+	CapabilityTokeninfoNotify = Capability{
+		Name:        subcapabilityName(CapabilityTokeninfo, "notify"),
+		Description: "Allows to manage notifications for this mytoken.",
 	}
 	CapabilityManageMTs = Capability{
 		Name:        "manage_mytokens",
@@ -81,6 +93,14 @@ var (
 		Name:        subcapabilityName(CapabilityManageMTs, "history"),
 		Description: "Allows to obtain the event history for any token.",
 	}
+	CapabilityNotifyAnyToken = Capability{
+		Name:        subcapabilityName(CapabilityManageMTs, "notify"),
+		Description: "Allows to manage notifications for any token.",
+	}
+	CapabilityNotifyAnyTokenRead = Capability{
+		Name:        CapabilityReadOnlyPrefix + CapabilityNotifyAnyToken.Name,
+		Description: "Allows to read notifications for any token.",
+	}
 )
 
 // AllCapabilities holds all defined Capabilities
@@ -90,6 +110,7 @@ var AllCapabilities = Capabilities{
 	CapabilityTokeninfoIntrospect,
 	CapabilityTokeninfoHistory,
 	CapabilityTokeninfoSubtokens,
+	CapabilityTokeninfoNotify,
 	CapabilityManageMTs,
 	CapabilityListMT,
 	CapabilityRevokeAnyToken,
@@ -101,6 +122,10 @@ var AllCapabilities = Capabilities{
 	CapabilityGrantsRead,
 	CapabilitySSHGrant,
 	CapabilitySSHGrantRead,
+	CapabilityEmail,
+	CapabilityEmailRead,
+	CapabilityNotifyAnyToken,
+	CapabilityNotifyAnyTokenRead,
 }
 
 // DefaultCapabilities holds the default Capabilities
