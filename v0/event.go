@@ -2,6 +2,8 @@ package api
 
 import (
 	"database/sql/driver"
+
+	"github.com/pkg/errors"
 )
 
 // Event is a type for events
@@ -18,7 +20,16 @@ func (e Event) Value() (driver.Value, error) {
 
 // Scan implements the sql.Scanner interface
 func (e *Event) Scan(src interface{}) error {
-	*e = Event(src.(string))
+	var eventString string
+	switch src.(type) {
+	case string:
+		eventString = src.(string)
+	case []byte:
+		eventString = string(src.([]byte))
+	default:
+		return errors.New("incompatible type for Event")
+	}
+	*e = Event(eventString)
 	return nil
 }
 
