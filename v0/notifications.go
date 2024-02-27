@@ -10,6 +10,11 @@ const (
 	NotificationTypeICSInvite = "ics_invite"
 )
 
+type NotificationsCombinedResponse struct {
+	Notifications []NotificationInfo     `json:"notifications,omitempty"`
+	Calendars     []NotificationCalendar `json:"calendars,omitempty"`
+}
+
 type SubscribeNotificationRequest struct {
 	Mytoken             string               `json:"mytoken,omitempty" form:"mytoken" xml:"mytoken"`
 	MOMID               string               `json:"mom_id,omitempty" form:"mom_id" xml:"mom_id"`
