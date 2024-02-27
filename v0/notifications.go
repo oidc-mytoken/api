@@ -11,8 +11,9 @@ const (
 )
 
 type NotificationsCombinedResponse struct {
-	Notifications []NotificationInfo     `json:"notifications,omitempty"`
-	Calendars     []NotificationCalendar `json:"calendars,omitempty"`
+	Notifications []NotificationInfo `json:"notifications,omitempty"`
+	Calendars     []CalendarInfo     `json:"calendars,omitempty"`
+	TokenUpdate   *MytokenResponse   `json:"token_update,omitempty"`
 }
 
 type SubscribeNotificationRequest struct {
