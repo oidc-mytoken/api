@@ -68,6 +68,8 @@ var (
 	EventNotificationUnsubscribed         = Event("notification_unsubscribed")
 	EventNotificationSubscribedOther      = Event("notification_subscribed_other")
 	EventNotificationUnsubscribedOther    = Event("notification_unsubscribed_other")
+	EventNotificationCreated              = Event("notification_created")
+	EventNotificationCreatedOther         = Event("notification_created_other")
 	EventCalendarCreated                  = Event("calendar_created")
 	EventCalendarListed                   = Event("calendar_listed")
 	EventCalendarDeleted                  = Event("calendar_deleted")

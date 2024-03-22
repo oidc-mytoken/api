@@ -10,6 +10,11 @@ const (
 	NotificationTypeICSInvite = "ics_invite"
 )
 
+type NotificationsCreateResponse struct {
+	ManagementCode string           `json:"management_code"`
+	TokenUpdate    *MytokenResponse `json:"token_update,omitempty"`
+}
+
 type NotificationsCombinedResponse struct {
 	Notifications []NotificationInfo `json:"notifications,omitempty"`
 	Calendars     []CalendarInfo     `json:"calendars,omitempty"`
@@ -84,7 +89,7 @@ var (
 	}
 	NotificationClassSettingChanges = &NotificationClass{
 		Name:        "setting_changes",
-		Description: "Notifications changes in the settings",
+		Description: "Notifications for changes in the settings",
 		relevantEvents: []Event{
 			EventCalendarCreated,
 			EventCalendarDeleted,
