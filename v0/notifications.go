@@ -4,23 +4,27 @@ import (
 	"encoding/json"
 )
 
+// Variables for different notification types
 const (
 	NotificationTypeMail      = "mail"
 	NotificationTypeWebsocket = "ws"
 	NotificationTypeICSInvite = "ics_invite"
 )
 
+// NotificationsCreateResponse is a type holding the response returned after a new notification was created
 type NotificationsCreateResponse struct {
 	ManagementCode string           `json:"management_code"`
 	TokenUpdate    *MytokenResponse `json:"token_update,omitempty"`
 }
 
+// NotificationsCombinedResponse is a type holding a response including information about notifications and calendars
 type NotificationsCombinedResponse struct {
 	Notifications []NotificationInfo `json:"notifications,omitempty"`
 	Calendars     []CalendarInfo     `json:"calendars,omitempty"`
 	TokenUpdate   *MytokenResponse   `json:"token_update,omitempty"`
 }
 
+// SubscribeNotificationRequest is a type holding a request to subscribe / create a new notification
 type SubscribeNotificationRequest struct {
 	Mytoken             string               `json:"mytoken,omitempty" form:"mytoken" xml:"mytoken"`
 	MOMID               string               `json:"mom_id,omitempty" form:"mom_id" xml:"mom_id"`
@@ -48,20 +52,31 @@ type NotificationInfoBase struct {
 	UserWide       bool   `db:"user_wide" json:"user_wide"`
 }
 
+// ManagementCodeNotificationInfoResponse is the response to a request to obtain infos about a notification via a
+// management code
+// This response will contain the oidc issuer url,
+// this allows the client to map the notification to an issuer and also to obtain a mytoken for the correct issuer in
+// order to obtain additional information
 type ManagementCodeNotificationInfoResponse struct {
 	NotificationInfo
 	OIDCIssuer string `json:"oidc_iss"`
 }
 
+// NotificationAddTokenRequest is a type holding a request to add a token a notification
 type NotificationAddTokenRequest struct {
 	Mytoken         string `json:"mytoken,omitempty" form:"mytoken" xml:"mytoken"`
 	MOMID           string `json:"mom_id,omitempty" form:"mom_id" xml:"mom_id"`
 	IncludeChildren bool   `json:"include_children" form:"include_children" xml:"include_children"`
 }
+
+// NotificationRemoveTokenRequest is a type holding a request to remove a token from a notification
 type NotificationRemoveTokenRequest struct {
 	Mytoken string `json:"mytoken,omitempty" form:"mytoken" xml:"mytoken"`
 	MOMID   string `json:"mom_id,omitempty" form:"mom_id" xml:"mom_id"`
 }
+
+// NotificationUpdateNotificationClassesRequest is a type holding a request to update the notification classes of a
+// notification
 type NotificationUpdateNotificationClassesRequest struct {
 	Classes []*NotificationClass `json:"notification_classes"`
 }
@@ -209,6 +224,7 @@ func init() {
 	}
 }
 
+// NotificationClassFromEvent returns the *NotificationClass linked to an Event
 func NotificationClassFromEvent(event Event) *NotificationClass {
 	nc, ok := notificationClassEventMap[event.String()]
 	if ok {
