@@ -21,11 +21,11 @@ func (e Event) Value() (driver.Value, error) {
 // Scan implements the sql.Scanner interface
 func (e *Event) Scan(src interface{}) error {
 	var eventString string
-	switch src.(type) {
+	switch src := src.(type) {
 	case string:
-		eventString = src.(string)
+		eventString = src
 	case []byte:
-		eventString = string(src.([]byte))
+		eventString = string(src)
 	default:
 		return errors.New("incompatible type for Event")
 	}
