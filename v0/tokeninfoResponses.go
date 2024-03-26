@@ -25,3 +25,10 @@ type TokeninfoListResponse struct {
 	Tokens      []MytokenEntryTree `json:"mytokens"`
 	TokenUpdate *MytokenResponse   `json:"token_update,omitempty"`
 }
+
+// TokeninfoNotificationsResponse is a type for the response for a notifications request
+type TokeninfoNotificationsResponse struct {
+	NotificationsCombinedResponse
+	MomIDMapping map[string]NotificationsCombinedResponse `json:"mom_id_mapping,omitempty"`
+	TokenUpdate  *MytokenResponse                         `json:"token_update,omitempty"`
+}
