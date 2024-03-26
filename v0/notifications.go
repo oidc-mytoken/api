@@ -48,6 +48,11 @@ type NotificationInfoBase struct {
 	UserWide       bool   `db:"user_wide" json:"user_wide"`
 }
 
+type ManagementCodeNotificationInfoResponse struct {
+	NotificationInfo
+	OIDCIssuer string `json:"oidc_iss"`
+}
+
 type NotificationAddTokenRequest struct {
 	Mytoken         string `json:"mytoken,omitempty" form:"mytoken" xml:"mytoken"`
 	MOMID           string `json:"mom_id,omitempty" form:"mom_id" xml:"mom_id"`
