@@ -140,11 +140,15 @@ var (
 		Name:        subNotificationClassName(NotificationClassSecurity, "revoked"),
 		Description: "Notifications for tried usage of a revoked token (only works as a user-wide notification)",
 	}
+	NotificationClassUnusualIPs = &NotificationClass{
+		Name:        subNotificationClassName(NotificationClassSecurity, "ips"),
+		Description: "Notifications for usages from previously unknown ip addresses",
+	}
 )
 
 func init() {
 	NotificationClassSecurity.children = []*NotificationClass{
-		// NotificationClassUnusualIPs,
+		NotificationClassUnusualIPs,
 		// NotificationsClassUnusualCountries,
 		NotificationClassBlockedUsages,
 		NotificationClassRevokedUsage,
