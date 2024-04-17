@@ -26,21 +26,21 @@ type NotificationsCombinedResponse struct {
 
 // SubscribeNotificationRequest is a type holding a request to subscribe / create a new notification
 type SubscribeNotificationRequest struct {
-	Mytoken             string               `json:"mytoken,omitempty" form:"mytoken" xml:"mytoken"`
-	MOMID               string               `json:"mom_id,omitempty" form:"mom_id" xml:"mom_id"`
-	NotificationType    string               `json:"notification_type" form:"notification_type" xml:"notification_type"`
-	NotificationClasses []*NotificationClass `json:"notification_classes" form:"notification_classes" xml:"notification_classes"`
-	IncludeChildren     bool                 `json:"include_children"`
-	UserWide            bool                 `json:"user_wide"`
-	Comment             string               `json:"comment,omitempty" form:"comment" xml:"comment"` // only for notification_type=ics_invite
+	Mytoken             string              `json:"mytoken,omitempty" form:"mytoken" xml:"mytoken"`
+	MOMID               string              `json:"mom_id,omitempty" form:"mom_id" xml:"mom_id"`
+	NotificationType    string              `json:"notification_type" form:"notification_type" xml:"notification_type"`
+	NotificationClasses NotificationClasses `json:"notification_classes" form:"notification_classes" xml:"notification_classes"`
+	IncludeChildren     bool                `json:"include_children"`
+	UserWide            bool                `json:"user_wide"`
+	Comment             string              `json:"comment,omitempty" form:"comment" xml:"comment"` // only for notification_type=ics_invite
 }
 
 // NotificationInfo is a type for holding information about a notification including the subscribed
 // NotificationClasses and tokens
 type NotificationInfo struct {
 	NotificationInfoBase
-	Classes          []*NotificationClass `json:"notification_classes"`
-	SubscribedTokens []string             `json:"subscribed_tokens,omitempty"`
+	Classes          NotificationClasses `json:"notification_classes"`
+	SubscribedTokens []string            `json:"subscribed_tokens,omitempty"`
 }
 
 // NotificationInfoBase is a type for holding the base information about a notification
@@ -78,7 +78,7 @@ type NotificationRemoveTokenRequest struct {
 // NotificationUpdateNotificationClassesRequest is a type holding a request to update the notification classes of a
 // notification
 type NotificationUpdateNotificationClassesRequest struct {
-	Classes []*NotificationClass `json:"notification_classes"`
+	Classes NotificationClasses `json:"notification_classes"`
 }
 
 // NotificationsListResponse is a type holding the response to a notification list request
@@ -92,8 +92,10 @@ type NotificationClass struct {
 	Name           string
 	Description    string
 	relevantEvents []Event
-	children       []*NotificationClass
+	children       NotificationClasses
 }
+
+type NotificationClasses []*NotificationClass
 
 // Defined NotificationClasses
 var (
@@ -144,23 +146,27 @@ var (
 		Name:        subNotificationClassName(NotificationClassSecurity, "ips"),
 		Description: "Notifications for usages from previously unknown ip addresses",
 	}
+	NotificationClassExpiration = &NotificationClass{
+		Name:        "expiration",
+		Description: "Notifications before a mytoken expires",
+	}
 )
 
 func init() {
-	NotificationClassSecurity.children = []*NotificationClass{
+	NotificationClassSecurity.children = NotificationClasses{
 		NotificationClassUnusualIPs,
 		// NotificationsClassUnusualCountries,
 		NotificationClassBlockedUsages,
 		NotificationClassRevokedUsage,
 	}
-	NotificationClassBlockedUsages.children = []*NotificationClass{
+	NotificationClassBlockedUsages.children = NotificationClasses{
 		NotificationClassInsufficientCapabilities,
 		NotificationClassRestrictedUsages,
 	}
 }
 
 // AllNotificationClasses holds all defined NotificationClasses
-var AllNotificationClasses = []*NotificationClass{
+var AllNotificationClasses = NotificationClasses{
 	NotificationClassATs,
 	NotificationClassMTs,
 	NotificationClassSettingChanges,
@@ -168,6 +174,8 @@ var AllNotificationClasses = []*NotificationClass{
 	NotificationClassBlockedUsages,
 	NotificationClassInsufficientCapabilities,
 	NotificationClassRestrictedUsages,
+	NotificationClassUnusualIPs,
+	NotificationClassExpiration,
 }
 
 func subNotificationClassName(nc *NotificationClass, Suffix string) string {
@@ -212,8 +220,18 @@ func (nc NotificationClass) Contains(v *NotificationClass) bool {
 	return false
 }
 
+// Contains checks if the NotificationClasses contains a NotificationClass (also as a subclass)
+func (classes NotificationClasses) Contains(v *NotificationClass) bool {
+	for _, nc := range classes {
+		if nc.Contains(v) {
+			return true
+		}
+	}
+	return false
+}
+
 // GetChildren returns the children of a NotificationClass
-func (nc *NotificationClass) GetChildren() []*NotificationClass {
+func (nc *NotificationClass) GetChildren() NotificationClasses {
 	return nc.children
 }
 
