@@ -1,9 +1,10 @@
 package api
 
 type MailSettingsInfoResponse struct {
-	EmailAddress   string `json:"email_address"`
-	EmailVerified  bool   `json:"email_verified"`
-	PreferHTMLMail bool   `json:"prefer_html_mail"`
+	EmailAddress   string           `json:"email_address"`
+	EmailVerified  bool             `json:"email_verified"`
+	PreferHTMLMail bool             `json:"prefer_html_mail"`
+	TokenUpdate    *MytokenResponse `json:"token_update,omitempty"`
 }
 
 type UpdateMailSettingsRequest struct {

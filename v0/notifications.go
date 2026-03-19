@@ -33,6 +33,13 @@ type SubscribeNotificationRequest struct {
 	IncludeChildren     bool                `json:"include_children"`
 	UserWide            bool                `json:"user_wide"`
 	Comment             string              `json:"comment,omitempty" form:"comment" xml:"comment"` // only for notification_type=ics_invite
+	Tags                []Tag               `json:"tags,omitempty"`
+}
+
+type CreateMytokenSubscribeNotificationInfos struct {
+	IncludeChildren     bool                `json:"include_children" xml:"include_children" form:"include_children"`
+	NotificationType    string              `json:"notification_type" xml:"notification_type" form:"notification_type"`
+	NotificationClasses NotificationClasses `json:"notification_classes" xml:"notification_classes" form:"notification_classes"`
 }
 
 // NotificationInfo is a type for holding information about a notification including the subscribed
@@ -41,6 +48,7 @@ type NotificationInfo struct {
 	NotificationInfoBase
 	Classes          NotificationClasses `json:"notification_classes"`
 	SubscribedTokens []string            `json:"subscribed_tokens,omitempty"`
+	Tags             []TagInfo           `json:"tags,omitempty"`
 }
 
 // NotificationInfoBase is a type for holding the base information about a notification
@@ -77,8 +85,15 @@ type NotificationRemoveTokenRequest struct {
 
 // NotificationUpdateNotificationClassesRequest is a type holding a request to update the notification classes of a
 // notification
+// Deprecated: Use NotificationUpdateRequest instead
 type NotificationUpdateNotificationClassesRequest struct {
 	Classes NotificationClasses `json:"notification_classes"`
+}
+
+// NotificationUpdateRequest is a type holding a request to update a notification's classes and/or tags
+type NotificationUpdateRequest struct {
+	Classes *NotificationClasses `json:"notification_classes,omitempty"`
+	Tags    *[]Tag               `json:"tags,omitempty"`
 }
 
 // NotificationsListResponse is a type holding the response to a notification list request
@@ -228,6 +243,28 @@ func (classes NotificationClasses) Contains(v *NotificationClass) bool {
 		}
 	}
 	return false
+}
+
+func (classes NotificationClasses) Equals(other NotificationClasses) bool {
+	if len(classes) != len(other) {
+		return false
+	}
+	m := make(map[string]struct{}, len(classes))
+	for _, nc := range classes {
+		m[nc.Name] = struct{}{}
+	}
+	for _, nc := range other {
+		delete(m, nc.Name)
+	}
+	// We added all names from classes to the map and deleted all names from
+	// other again; if there is something in classes that is not in other it
+	// is still in the map, and len!=0
+	// If there is something in other that is not in classes either
+	// 		len(other)>len(classes)
+	// 			-> we already have returned false at the beginning
+	//      or there also is something in classes that is not in other
+	//			--> something is still in the map
+	return len(m) == 0
 }
 
 // GetChildren returns the children of a NotificationClass

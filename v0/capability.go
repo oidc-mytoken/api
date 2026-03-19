@@ -57,6 +57,14 @@ var (
 		Name:        CapabilityReadOnlyPrefix + CapabilityEmail.Name,
 		Description: "Allows read access to email settings.",
 	}
+	CapabilityTags = Capability{
+		Name:        CapabilitySettings.Name + ":tags",
+		Description: "Allows read/write access to managing tags.",
+	}
+	CapabilityTagsRead = Capability{
+		Name:        CapabilityReadOnlyPrefix + CapabilityTags.Name,
+		Description: "Allows read access to tags.",
+	}
 	CapabilityTokeninfo = Capability{
 		Name:        "tokeninfo",
 		Description: "Allows to obtain all information about this token.",
@@ -76,6 +84,10 @@ var (
 	CapabilityTokeninfoNotify = Capability{
 		Name:        subcapabilityName(CapabilityTokeninfo, "notify"),
 		Description: "Allows to manage notifications for this mytoken.",
+	}
+	CapabilityTokeninfoTags = Capability{
+		Name:        subcapabilityName(CapabilityTokeninfo, "tags"),
+		Description: "Allows to manage tags for this mytoken.",
 	}
 	CapabilityManageMTs = Capability{
 		Name:        "manage_mytokens",
@@ -97,6 +109,10 @@ var (
 		Name:        subcapabilityName(CapabilityManageMTs, "notify"),
 		Description: "Allows to manage notifications for any token.",
 	}
+	CapabilityTagAnyToken = Capability{
+		Name:        subcapabilityName(CapabilityManageMTs, "tags"),
+		Description: "Allows to manage tags for any token.",
+	}
 	CapabilityNotifyAnyTokenRead = Capability{
 		Name:        CapabilityReadOnlyPrefix + CapabilityNotifyAnyToken.Name,
 		Description: "Allows to read notifications for any token.",
@@ -111,10 +127,12 @@ var AllCapabilities = Capabilities{
 	CapabilityTokeninfoHistory,
 	CapabilityTokeninfoSubtokens,
 	CapabilityTokeninfoNotify,
+	CapabilityTokeninfoTags,
 	CapabilityManageMTs,
 	CapabilityListMT,
 	CapabilityRevokeAnyToken,
 	CapabilityHistoryAnyToken,
+	CapabilityTagAnyToken,
 	CapabilityCreateMT,
 	CapabilitySettings,
 	CapabilitySettingsRead,
@@ -124,6 +142,8 @@ var AllCapabilities = Capabilities{
 	CapabilitySSHGrantRead,
 	CapabilityEmail,
 	CapabilityEmailRead,
+	CapabilityTags,
+	CapabilityTagsRead,
 	CapabilityNotifyAnyToken,
 	CapabilityNotifyAnyTokenRead,
 }

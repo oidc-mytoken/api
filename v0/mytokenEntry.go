@@ -5,10 +5,11 @@ package api
 type MytokenEntry struct {
 	// The "Manage-Other-Mytokens-ID (MOMID) is used in requests to manage other mytokens than the one used for
 	// authorization
-	MOMID          string `json:"mom_id"`
-	Name           string `json:"name,omitempty"`
-	CreatedAt      int64  `json:"created"`
-	ExpiresAt      int64  `json:"expires_at,omitempty"`
+	MOMID          string      `json:"mom_id"`
+	Name           string      `json:"name,omitempty"`
+	CreatedAt      int64       `json:"created"`
+	ExpiresAt      int64       `json:"expires_at,omitempty"`
+	Tags           []MTTagInfo `json:"tags,omitempty"`
 	ClientMetaData `json:",inline"`
 }
 

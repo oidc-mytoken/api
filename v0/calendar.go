@@ -1,8 +1,14 @@
 package api
 
+type CreateCalendarRequest struct {
+	Description string `json:"description,omitempty"`
+	Tags        []Tag  `json:"tags"`
+}
+
 type NotificationCalendar struct {
-	Name    string `json:"name"`
-	ICSPath string `json:"ics_path"`
+	ICSPath     string    `json:"ics_path"`
+	Description string    `json:"description,omitempty"`
+	Tags        []TagInfo `json:"tags"`
 }
 
 type CalendarInfo struct {
