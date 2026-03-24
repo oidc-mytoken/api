@@ -6,6 +6,7 @@ type CreateCalendarRequest struct {
 }
 
 type NotificationCalendar struct {
+	ID          string    `json:"id"`
 	ICSPath     string    `json:"ics_path"`
 	Description string    `json:"description,omitempty"`
 	Tags        []TagInfo `json:"tags"`
