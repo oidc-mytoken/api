@@ -62,12 +62,14 @@ type NotificationInfoBase struct {
 
 // ManagementCodeNotificationInfoResponse is the response to a request to obtain infos about a notification via a
 // management code
-// This response will contain the oidc issuer url,
+// This response will contain the oidc issuer url and subject,
 // this allows the client to map the notification to an issuer and also to obtain a mytoken for the correct issuer in
-// order to obtain additional information
+// order to obtain additional information.
+// The oidc_sub is included to allow the client to detect if the logged-in user is the owner of the notification.
 type ManagementCodeNotificationInfoResponse struct {
 	NotificationInfo
 	OIDCIssuer string `json:"oidc_iss"`
+	OIDCSub    string `json:"oidc_sub"`
 }
 
 // NotificationAddTokenRequest is a type holding a request to add a token a notification
