@@ -30,7 +30,7 @@ type SupportedProviderConfig struct {
 	Issuer          string   `json:"issuer"`
 	Name            string   `json:"name,omitempty"`
 	ScopesSupported []string `json:"scopes_supported"`
-	OIDCFed         bool     `json:"oidc_fed,omitempty"`
+	OIDFed          bool     `json:"oidfed,omitempty"`
 }
 
 // SSHKeyMetadata holds information about an ssh key
