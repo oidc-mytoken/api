@@ -167,6 +167,10 @@ var (
 		Name:        "expiration",
 		Description: "Notifications before a mytoken expires",
 	}
+	NotificationClassRTFailure = &NotificationClass{
+		Name:        "rt_failure",
+		Description: "Notifications when a refresh token could not be used",
+	}
 )
 
 func init() {
@@ -193,6 +197,7 @@ var AllNotificationClasses = NotificationClasses{
 	NotificationClassRestrictedUsages,
 	NotificationClassUnusualIPs,
 	NotificationClassExpiration,
+	NotificationClassRTFailure,
 }
 
 func subNotificationClassName(nc *NotificationClass, Suffix string) string {
