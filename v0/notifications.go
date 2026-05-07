@@ -46,9 +46,10 @@ type CreateMytokenSubscribeNotificationInfos struct {
 // NotificationClasses and tokens
 type NotificationInfo struct {
 	NotificationInfoBase
-	Classes          NotificationClasses `json:"notification_classes"`
-	SubscribedTokens []string            `json:"subscribed_tokens,omitempty"`
-	Tags             []TagInfo           `json:"tags,omitempty"`
+	Classes               NotificationClasses `json:"notification_classes"`
+	SubscribedTokens      []string            `json:"subscribed_tokens,omitempty"`
+	TotalSubscribedTokens int                 `json:"total_subscribed_tokens,omitempty"`
+	Tags                  []TagInfo           `json:"tags,omitempty"`
 }
 
 // NotificationInfoBase is a type for holding the base information about a notification
