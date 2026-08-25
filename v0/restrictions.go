@@ -14,6 +14,7 @@ type Restriction struct {
 	GeoIPDisallow    []string         `json:"geoip_disallow,omitempty"`
 	UsagesAT         *int64           `json:"usages_AT,omitempty"`
 	UsagesOther      *int64           `json:"usages_other,omitempty"`
+	Schedule         *Schedule        `json:"schedule,omitempty"`
 	IncludedProfiles IncludedProfiles `json:"include,omitempty"`
 }
 

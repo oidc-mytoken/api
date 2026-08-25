@@ -29,7 +29,7 @@ type Mytoken struct {
 // TokenVer is the current Mytoken TokenVersion
 var TokenVer = TokenVersion{
 	Major: 0,
-	Minor: 7,
+	Minor: 8,
 }
 
 // TokenType is a constant that can be used for identifying mytokens and to distinguish them from OIDC tokens

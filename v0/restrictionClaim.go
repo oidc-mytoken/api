@@ -11,6 +11,7 @@ var AllRestrictionClaims = [...]string{
 	RestrictionClaimGeoIPDisallow,
 	RestrictionClaimUsagesAT,
 	RestrictionClaimUsagesOther,
+	RestrictionClaimSchedule,
 }
 
 // RestrictionClaims
@@ -24,4 +25,5 @@ const (
 	RestrictionClaimGeoIPDisallow = "geoip_disallow"
 	RestrictionClaimUsagesAT      = "usages_AT"
 	RestrictionClaimUsagesOther   = "usages_other"
+	RestrictionClaimSchedule      = "schedule"
 )
